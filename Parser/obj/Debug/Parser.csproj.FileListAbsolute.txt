@@ -1,0 +1,53 @@
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\x2net.dll
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\xNet.dll
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\x2net.pdb
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\x2net.xml
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser.csprojResolveAssemblyReference.cache
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser_Html_With_Java.mainForm.resources
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser_Html_With_Java.lostWork.resources
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser.csproj.GenerateResource.Cache
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser_Html_With_Java.AboutBox1.resources
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser_Html_With_Java.ProxiForm.resources
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\Parser.exe.config
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\Parser.exe
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\bin\Debug\Parser.pdb
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser.Properties.Resources.resources
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser.exe
+D:\Projects\C#\Parser Html With Java\Parser Html With Java\obj\Debug\Parser.pdb
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\Parser.exe.config
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.exe
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.pdb
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\Parser.exe
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\Parser.pdb
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\x2net.dll
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\xNet.dll
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\x2net.pdb
+D:\Projects\C#\Parser\Parser Html With Java\bin\Debug\x2net.xml
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.Properties.Resources.resources
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.csproj.GenerateResource.Cache
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.AboutBox1.resources
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.mainForm.resources
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.ProxiForm.resources
+D:\Projects\C#\Parser\Parser Html With Java\obj\Debug\Parser.lostWork.resources
+D:\Projects\C#\Parser\Parser\bin\Debug\Parser.exe.config
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.exe
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.pdb
+D:\Projects\C#\Parser\Parser\bin\Debug\Parser.exe
+D:\Projects\C#\Parser\Parser\bin\Debug\Parser.pdb
+D:\Projects\C#\Parser\Parser\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\C#\Parser\Parser\bin\Debug\x2net.dll
+D:\Projects\C#\Parser\Parser\bin\Debug\xNet.dll
+D:\Projects\C#\Parser\Parser\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\C#\Parser\Parser\bin\Debug\x2net.pdb
+D:\Projects\C#\Parser\Parser\bin\Debug\x2net.xml
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.csprojResolveAssemblyReference.cache
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.mainForm.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.Properties.Resources.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.ProxiForm.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.lostWork.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.csproj.GenerateResource.Cache
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.View.resources
