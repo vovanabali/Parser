@@ -30,7 +30,7 @@ namespace Parser.main
                             //Прокси
                             if (mainForm.proxi != null && mainForm.proxi.Count != 0) request.Proxy = Socks5ProxyClient.Parse(mainForm.proxi[Properties.Settings.Default.itterator]);
                             // Отправляем запрос.
-                            HttpResponse response = request.Get(site.Replace("<инентификатор>", bot.id));
+                            HttpResponse response = request.Get(bot.parsURL);
                             // Принимаем тело сообщения в виде строки.
                             json = response.ToString();
                             Properties.Settings.Default.itterator++;
@@ -40,17 +40,23 @@ namespace Parser.main
                         }
                         catch (Exception ex)
                         {
-                            if (Properties.Settings.Default.itterator >= mainForm.proxi.Count)
+                            switch (ex.Message)
                             {
-                                Properties.Settings.Default.itterator = 0;
-                                Properties.Settings.Default.Save();
-                            }
-                            else
-                            {
-                                destroiI.Add(mainForm.proxi[Properties.Settings.Default.itterator]);
-                                errors = true;
-                                iterErrors++;
-                                if (iterErrors > mainForm.proxi.Count) break;
+                                case "Не удалось соединиться с HTTP-сервером 'steamcommunity.com'":
+                                    if (Properties.Settings.Default.itterator >= mainForm.proxi.Count)
+                                    {
+                                        Properties.Settings.Default.itterator = 0;
+                                        Properties.Settings.Default.Save();
+                                    }
+                                    else
+                                    {
+                                        destroiI.Add(mainForm.proxi[Properties.Settings.Default.itterator]);
+                                        errors = true;
+                                        iterErrors++;
+                                        if (iterErrors > mainForm.proxi.Count) break;
+                                    }
+                                    break;
+                                default: break;
                             }
                         }
                     }

@@ -48,6 +48,7 @@ D:\Projects\C#\Parser\Parser\obj\Debug\Parser.csprojResolveAssemblyReference.cac
 D:\Projects\C#\Parser\Parser\obj\Debug\Parser.mainForm.resources
 D:\Projects\C#\Parser\Parser\obj\Debug\Parser.Properties.Resources.resources
 D:\Projects\C#\Parser\Parser\obj\Debug\Parser.ProxiForm.resources
-D:\Projects\C#\Parser\Parser\obj\Debug\Parser.lostWork.resources
 D:\Projects\C#\Parser\Parser\obj\Debug\Parser.csproj.GenerateResource.Cache
-D:\Projects\C#\Parser\Parser\obj\Debug\Parser.View.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.nameListForm.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.ViewBots.resources
+D:\Projects\C#\Parser\Parser\obj\Debug\Parser.ViewItems.resources

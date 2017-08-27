@@ -12,6 +12,7 @@ namespace Parser.main
         public string id { get; set; }
         public string siteName { get; set; }
         public bool success { get; set; }
+        public string parsURL{ get; set; }
         public Dictionary<string, RgInventory> rgInventory { get; set; }
         public Dictionary<string,RgDescriptions> rgDescriptions { get; set; }
 
@@ -22,6 +23,19 @@ namespace Parser.main
             this.name = name;
             this.url = url;
             this.id = getId(url);
+            currentParsUrl(url);
+        }
+
+        private void currentParsUrl(string url)
+        {
+            if (url.Contains("id"))
+            {
+                parsURL = "https://steamcommunity.com/id/"+id+"/inventory/json/730/2";
+            }
+            else
+            {
+                parsURL = "https://steamcommunity.com/profiles/"+id+"/inventory/json/730/2";
+            }
         }
 
         public Bot(string name, string url, string siteName)
@@ -30,9 +44,9 @@ namespace Parser.main
             this.url = url;
             this.id = getId(url);
             this.siteName = siteName;
+            currentParsUrl(url);
         }
 
-        //https://steamcommunity.com/id/weans/inventory/json/730/2
         private string getId(string url)
         {
             try

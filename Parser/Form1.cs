@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Net;
-using xNet;
 using System.Collections.Generic;
 using Parser.main;
 using System.IO;
-using Newtonsoft.Json;
-using Parser.main.BotClasses;
 using System.Media;
 
 namespace Parser
@@ -18,6 +14,7 @@ namespace Parser
         public static List<string> proxi = new List<string>();
 
         List<string> check = new List<string>();
+
         public static List<string> serchItems = new List<string>();
 
         public mainForm()
@@ -27,26 +24,32 @@ namespace Parser
 
         private void изменитьСписокБотовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                lostWork botsForm = new lostWork();
-                if (botsForm.ShowDialog() == DialogResult.OK)
-                {
-                    bots = botsForm.getInfo();
-                }
+
         }
 
-        private async void start_Click(object sender, EventArgs e)
+        private void start_Click(object sender, EventArgs e)
         {
-            if (proxi.Count == 0) MessageBox.Show("Отсутствуют прокси сервера");
+            timer1.Interval = (int)time.Value * 1000;
+            timer1.Enabled = !timer1.Enabled;
+            if (timer1.Enabled) start.Text = "Остановить";
+            else
+                start.Text = "Начать";
+        }
+        int i = 0;
+        private async void startPars()
+        {
             List<Bot> tempBot = new List<Bot>(bots.Keys);
+            i++;
+            this.Text += i;
+            timer1.Enabled = false;
             foreach (Bot bot in tempBot)
             {
                 bots[bot] = await new Parse().getItems(await new Parse().getJson(bot));
-                //label2.Text = bots[bot].Count.ToString();
                 try
                 {
                     foreach (Item item in bots[bot])
                     {
-                        writeInDataGrid(bot,item);                   
+                        writeInDataGrid(bot, item);
                     }
                 }
                 catch (Exception ex)
@@ -54,26 +57,45 @@ namespace Parser
                     MessageBox.Show(ex.Message);
                 }
             }
+            timer1.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            startPars();
         }
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            
             try
             {
-                foreach (Bot bot in new loadAndSave().loadfromSerFile())
-                {
-                    bots.Add(bot, new List<Item>());
-                }
                 proxi = new loadAndSave().loadProxi();
+                if (proxi.Count == 0) MessageBox.Show("Отсутствуют прокси сервера");
             }
-            catch(System.NullReferenceException)
+            catch(Exception ex)
             {
-                MessageBox.Show("Не удалось загрузить список ботов");
+                MessageBox.Show("Не удалось загрузить прокси сервера. Причина ошибки:\n"+ex.Message);
+            }
+
+            foreach(FileInfo file in new DirectoryInfo("Files/Bots/").GetFiles())
+            {
+                botsBox.Items.Add(file.Name.Split('.')[0]);
+            }
+            if(botsBox.Items.Count>0) botsBox.SelectedIndex = 0;
+
+            try
+            {
+                FileInfo[] files = new DirectoryInfo("Files/SerchItems/").GetFiles();
+                foreach(FileInfo fileName in files)
+                {
+                        comboBox1.Items.Add(fileName.Name.Split('.')[0]);
+                }
+                comboBox1.SelectedIndex = 0;
+            }
+            catch
+            {
+
             }
         }
 
@@ -115,7 +137,7 @@ namespace Parser
 
         private void неПоказыватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new View().ShowDialog();
+
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -227,9 +249,17 @@ namespace Parser
             string exeption = item.exterior;
             string type = item.type;
             string site = bot.siteName;
+
+            if (viewAll.Checked)
+            {
+                dataGridView1.Rows.Add(name, itemName, exeption, type, site);
+            }
+            else
+            //Если кол-во сортировок по виду оружия(Винтовки, ножи и.т.д.)
             if (check.Count == 0)
             {
-                if (serchItems.Contains(itemName) && serchItems.Count != 0) dataGridView1.Rows.Add(name, itemName, exeption, type, site);
+                if (checkItemInSerchItems(itemName) && serchItems.Count != 0)
+                    dataGridView1.Rows.Add(name, itemName, exeption, type, site);
                 else
                 {
                     if (serchItems.Count == 0) dataGridView1.Rows.Add(name, itemName, exeption, type, site);
@@ -237,12 +267,23 @@ namespace Parser
             }
             else
             {
-                if (check.Contains(type) && serchItems.Contains(itemName) && serchItems.Count != 0)
+                if (check.Contains(type) && checkItemInSerchItems(itemName) && serchItems.Count != 0)
                     dataGridView1.Rows.Add(name, itemName, exeption, type, site);
                 else
                     if (serchItems.Count == 0) dataGridView1.Rows.Add(name, itemName, exeption, type, site);
             }
         }
+
+        private bool checkItemInSerchItems(string itemName)
+        {
+            bool result = false;
+            foreach (string item in serchItems)
+            {
+                if (item.IndexOf(itemName, StringComparison.InvariantCultureIgnoreCase) > 0) result = true;
+            }
+            return result;
+        }
+
         SoundPlayer sound = new SoundPlayer(Properties.Settings.Default.soundName);
         private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -262,6 +303,75 @@ namespace Parser
         {
             if (checkBox1.Checked) this.TopMost = true;
             else this.TopMost = false;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "Стандартные") serchItems = new loadAndSave().loadSerchItems("Default");
+            else
+                serchItems = new loadAndSave().loadSerchItems(comboBox1.Text);
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bots != null)
+            {
+                foreach(Bot bot in bots.Keys)
+                {
+                    foreach(Item item in bots[bot])
+                    {
+                        writeInDataGrid(bot,item);
+                    }
+                }
+            }
+        }
+
+        private void спискиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ViewItems().ShowDialog();
+            try
+            {
+                FileInfo[] files = new DirectoryInfo("Files/SerchItems/").GetFiles();
+                foreach (FileInfo fileName in files)
+                {
+                    comboBox1.Items.Add(fileName.Name.Split('.')[0]);
+                }
+                if(comboBox1.Items.Count>0) comboBox1.SelectedIndex = 0;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void спискиБотовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ViewBots().ShowDialog();
+            foreach (FileInfo file in new DirectoryInfo("Files/Bots/").GetFiles())
+            {
+                botsBox.Items.Add(file.Name.Split('.')[0]);
+            }
+            if (botsBox.Items.Count > 0) botsBox.SelectedIndex = 0;
+        }
+
+        private void botsBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Bot bot in new loadAndSave().loadBotFromFile(botsBox.SelectedItem.ToString()))
+                {
+                    bots.Add(bot, new List<Item>());
+                }
+            }
+            catch (System.NullReferenceException)
+            {
+                MessageBox.Show("Не удалось загрузить список ботов");
+            }
         }
     }
 }

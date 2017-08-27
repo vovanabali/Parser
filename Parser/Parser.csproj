@@ -71,6 +71,12 @@
     <Compile Include="main\Item.cs" />
     <Compile Include="main\loadAndSave.cs" />
     <Compile Include="main\Parse.cs" />
+    <Compile Include="nameListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nameListForm.Designer.cs">
+      <DependentUpon>nameListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxiForm.cs">
@@ -79,20 +85,23 @@
     <Compile Include="ProxiForm.Designer.cs">
       <DependentUpon>ProxiForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View.cs">
+    <Compile Include="ViewBots.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View.Designer.cs">
-      <DependentUpon>View.cs</DependentUpon>
+    <Compile Include="ViewBots.Designer.cs">
+      <DependentUpon>ViewBots.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkList.cs">
+    <Compile Include="ViewItems.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WorkList.Designer.cs">
-      <DependentUpon>WorkList.cs</DependentUpon>
+    <Compile Include="ViewItems.Designer.cs">
+      <DependentUpon>ViewItems.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nameListForm.resx">
+      <DependentUpon>nameListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,11 +116,11 @@
     <EmbeddedResource Include="ProxiForm.resx">
       <DependentUpon>ProxiForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View.resx">
-      <DependentUpon>View.cs</DependentUpon>
+    <EmbeddedResource Include="ViewBots.resx">
+      <DependentUpon>ViewBots.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkList.resx">
-      <DependentUpon>WorkList.cs</DependentUpon>
+    <EmbeddedResource Include="ViewItems.resx">
+      <DependentUpon>ViewItems.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

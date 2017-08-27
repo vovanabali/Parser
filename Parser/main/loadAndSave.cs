@@ -6,26 +6,11 @@ namespace Parser.main
 {
     class loadAndSave
     {
-        string st = @"Files\listBots.txt";
-        string proxiFileName = @"Files\proxi.txt";
+        string st = @"Files\listBots.dat";
+        string proxiFileName = @"Files\proxi.dat";
+        string derBots = @"Files\Bots\";
+        string derItems = @"Files\SerchItems\";
         
-        public List<Bot> loadBotsFromFile(string fileName)
-        {
-            List<Bot> bots = new List<Bot>();
-            using (Stream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
-            using (StreamReader sr = new StreamReader(stream))
-            {
-                string read = null;
-                while ((read = sr.ReadLine()) != null)
-                {
-                    string name = read.Split('|')[0];
-                    string url = read.Split('|')[1];
-                    bots.Add(new Bot(name, url));
-                }
-            }
-            return bots;
-        }
-
         public List<Bot> loadfromSerFile()
         {
 
@@ -50,13 +35,37 @@ namespace Parser.main
             return bots;
         }
 
-        public void saveBots(List<Bot> bots)
+        public List<Bot> loadBotFromFile(string nameList)
+        {
+            List<Bot> bots;
+            try
+            {
+                using (Stream stream = File.Open(derBots+nameList+".dat", FileMode.OpenOrCreate, FileAccess.Read))
+                using (StreamReader sr = new StreamReader(stream, System.Text.Encoding.Default))
+                {
+                    string read = null; string json = "";
+                    while ((read = sr.ReadLine()) != null)
+                    {
+                        json += read;
+                    }
+                    bots = JsonConvert.DeserializeObject<List<Bot>>(json);
+                }
+            }
+            catch (System.Exception)
+            {
+                bots = null;
+            }
+            return bots;
+        }
+
+        public void saveBots(List<Bot> bots, string name)
         {
             string serialized = JsonConvert.SerializeObject(bots);
-            using (Stream stream = File.Open(st, FileMode.Create, FileAccess.Write))
+            using (Stream stream = File.Open(derBots+name+".dat", FileMode.Create, FileAccess.Write))
             using (StreamWriter wr = new StreamWriter(stream, System.Text.Encoding.Default))
             {
                 wr.WriteLine(serialized);
+                wr.Flush();
             }
         }
         
@@ -106,7 +115,38 @@ namespace Parser.main
             using (StreamWriter wr = new StreamWriter(stream, System.Text.Encoding.Default))
             {
                 wr.WriteLine(serialized);
+                wr.Flush();
             }
+        }
+
+
+        public void saveSerchItems(List<string> serchItems,string nameList)
+        {
+            string serialized = JsonConvert.SerializeObject(serchItems);
+            if (!Directory.Exists("Files/SerchItems")) Directory.CreateDirectory("Files/SerchItems");
+            using (Stream stream = File.Open("Files/SerchItems/"+nameList+ ".dat", FileMode.Create, FileAccess.Write))
+            using (StreamWriter wr = new StreamWriter(stream, System.Text.Encoding.Default))
+            {
+                wr.WriteLine(serialized);
+                wr.Flush();
+            }
+        }
+
+
+        public List<string> loadSerchItems(string nameList)
+        {
+            List<string> serchItems = new List<string>();
+            using (Stream stream = File.Open(derItems+ nameList + ".dat", FileMode.OpenOrCreate, FileAccess.Read))
+            using (StreamReader sr = new StreamReader(stream, System.Text.Encoding.Default))
+            {
+                string read = null; string json = "";
+                while ((read = sr.ReadLine()) != null)
+                {
+                    json += read;
+                }
+                serchItems = JsonConvert.DeserializeObject<List<string>>(json);
+            }
+            return serchItems;
         }
     }
 }
